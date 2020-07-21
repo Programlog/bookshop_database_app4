@@ -5,6 +5,7 @@ Year, ISBN
 """
 
 import tkinter as tk
+import backend
 
 window = tk.Tk()
 
@@ -45,6 +46,24 @@ sb1.grid(row=2, column=2, rowspan=6)
 
 list1.configure(yscrollcommand=sb1.set)
 sb1.configure(command=list1.yview())
+
+b1 = tk.Button(window, text='View All', width=12)
+b1.grid(row=2, column=3)
+
+b2 = tk.Button(window, text='Search Entry', width=12)
+b2.grid(row=3, column=3)
+
+b3 = tk.Button(window, text='Add Entry', width=12)
+b3.grid(row=4, column=3)
+
+b4 = tk.Button(window, text='Update', width=12)
+b4.grid(row=5, column=3)
+
+b5 = tk.Button(window, text='Delete', width=12)
+b5.grid(row=6, column=3)
+
+b6 = tk.Button(window, text='Close', width=12)
+b6.grid(row=7, column=3)
 
 window.mainloop()
 
