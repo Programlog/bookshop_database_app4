@@ -4,7 +4,8 @@ import sqlite3
 def connect():
     conn = sqlite3.connect("books.db")
     cur = conn.cursor()
-    cur.execute("CREATE TABLE IF NOT EXISTS book(id INTEGER, title text, author text, year integer, isbn integer)")
+    cur.execute("CREATE TABLE IF NOT EXISTS book(id INTEGER PRIMARY KEY, title text, author text, year integer, "
+                "isbn integer)")
     conn.commit()
     conn.close()
 
@@ -35,7 +36,26 @@ def search(title='', author='', year='', isbn=''):
     return rows
 
 
+def delete(id):
+    conn = sqlite3.connect("books.db")
+    cur = conn.cursor()
+    cur.execute("DELETE FROM book WHERE id=?", (id,))
+    conn.commit()
+    conn.close()
+
+
+def update(id, title, author, year, isbn):
+    conn = sqlite3.connect("books.db")
+    cur = conn.cursor()
+    cur.execute("UPDATE book SET title=?, author=?, year=?, isbn=? WHERE id=?", (title, author, year, isbn, id))
+    conn.commit()
+    conn.close()
+
+
 connect()
 
+# update(1, 'The soil', 'india', '2022', '939829')
+# print(search(author='John Hopkins'))
+# delete(4)
+
 print(view())
-print(search(author='Jake Longhorn'))
