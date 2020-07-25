@@ -7,6 +7,12 @@ Year, ISBN
 import tkinter as tk
 import backend
 
+
+def viewcommand():
+    for row in backend.view():
+        list1.insert(row)
+
+
 window = tk.Tk()
 
 title = tk.Label(window, text='Title')
@@ -20,7 +26,6 @@ year.grid(row=1, column=0)
 
 title = tk.Label(window, text='ISBN')
 title.grid(row=1, column=2)
-
 
 title_text = tk.StringVar()
 e1 = tk.Entry(window, textvariable=title_text)
@@ -47,7 +52,7 @@ sb1.grid(row=2, column=2, rowspan=6)
 list1.configure(yscrollcommand=sb1.set)
 sb1.configure(command=list1.yview())
 
-b1 = tk.Button(window, text='View All', width=12)
+b1 = tk.Button(window, text='View All', width=12, command=lambda: viewcommand)
 b1.grid(row=2, column=3)
 
 b2 = tk.Button(window, text='Search Entry', width=12)
@@ -66,4 +71,3 @@ b6 = tk.Button(window, text='Close', width=12)
 b6.grid(row=7, column=3)
 
 window.mainloop()
-
