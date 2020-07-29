@@ -54,7 +54,7 @@ def update(id, title, author, year, isbn):
 
 connect()
 
-#insert('The soil', 'india', '2022', '939829')
+# insert('The ocean', 'america', '1988', '090282')
 # print(search(author='John Hopkins'))
 # delete(1)
 
