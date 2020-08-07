@@ -12,6 +12,7 @@ database = Database('books.db')
 
 def get_selected_row(event):
     global selected_tuple
+
     if list1.curselection():
         index = list1.curselection()[0]
         selected_tuple = list1.get(index)
