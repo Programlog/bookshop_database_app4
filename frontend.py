@@ -5,7 +5,9 @@ Year, ISBN
 """
 
 import tkinter as tk
-import backend
+from backend import Database
+
+database = Database('books.db')
 
 
 def get_selected_row(event):
@@ -25,33 +27,32 @@ def get_selected_row(event):
 
 def view_command():
     list1.delete(0, tk.END)
-    for row in backend.view():
+    for row in database.view():
         list1.insert(tk.END, row)
 
 
 def search_command():
     list1.delete(0, tk.END)
-    for row in backend.search(title_text.get(), author_text.get(), year_text.get(), isbn_text.get()):
+    for row in database.search(title_text.get(), author_text.get(), year_text.get(), isbn_text.get()):
         list1.insert(tk.END, row)
 
 
 def add_command():
     list1.delete(0, tk.END)
-    backend.insert(title_text.get(), author_text.get(), year_text.get(), isbn_text.get())
+    database.insert(title_text.get(), author_text.get(), year_text.get(), isbn_text.get())
     list1.insert(tk.END, (title_text.get(), author_text.get(), year_text.get(), isbn_text.get()))
 
 
 def delete_command():
-    backend.delete(selected_tuple[0])
+    database.delete(selected_tuple[0])
 
 
 def update_command():
-    backend.update(selected_tuple[0], title_text.get(), author_text.get(), year_text.get(), isbn_text.get())
+    database.update(selected_tuple[0], title_text.get(), author_text.get(), year_text.get(), isbn_text.get())
 
 
 window = tk.Tk()
-window.title('Book Store')
-
+window.title('Book Store  ')
 
 title = tk.Label(window, text='Title')
 title.grid(row=0, column=0)
